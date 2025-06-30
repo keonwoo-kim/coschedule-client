@@ -53,11 +53,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     );
   }
 
-//   // 만약 이미 useEffect에서 /login으로 redirect 중이면
-//   if (!isAuthenticated) {
-//     return null;
-//   }
-
   return (
     <html lang="en">
       <body className={`${inter.className} h-screen m-0 bg-gray-50 dark:bg-gray-900 dark:text-white`}>
