@@ -17,20 +17,6 @@ export interface PreviewSource {
   height: number;
 }
 
-export interface Preview {
-  images: PreviewImage[];
-}
-
-export interface PreviewImage {
-  source: PreviewSource;
-}
-
-export interface PreviewSource {
-  url: string;
-  width: number;
-  height: number;
-}
-
 export interface PostData {
   id: string;
   title: string;

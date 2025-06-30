@@ -34,14 +34,6 @@ export interface RatingDto {
   updatedUtc: string;
 }
 
-export interface AccountDto {
-  id: number;
-  userId: string;
-  userName: string;
-  createdUtc: string;
-  updatedUtc: string;
-}
-
 export interface LoginResponseModel {
   isSuccess: boolean;
   msg: string;
