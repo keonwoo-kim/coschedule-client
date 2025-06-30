@@ -3,7 +3,7 @@ import Router from "next/router";
 import { useUserStore } from "@/store/useUserStore";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
 });
 
 api.interceptors.response.use(
