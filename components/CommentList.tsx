@@ -53,16 +53,17 @@ export default function CommentList({
         {comments.map(c => (
           <li
             key={c.id}
-            className="bg-zinc-800/50 p-4 rounded-lg shadow flex justify-between items-start"
+            className="bg-gray-100 dark:bg-zinc-800/50 p-4 rounded-lg shadow flex justify-between items-start"
           >
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <UserIcon className="w-4 h-4 text-blue-400" />
-                <strong className="text-blue-400">{c.userName}</strong>
+                <UserIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <strong className="text-gray-800 dark:text-blue-400">{c.userName}</strong>
               </div>
-              <p className="text-sm text-gray-200">{c.content}</p>
-              <div className="text-xs text-gray-400 italic mt-1"
-                title={dayjs(c.createdUtc).format("YYYY-MM-DD HH:mm:ss")}>
+              <p className="text-sm text-gray-800 dark:text-gray-200">{c.content}</p>
+              <div className="text-xs text-gray-600 dark:text-gray-400 italic mt-1"
+                title={dayjs(c.createdUtc).format("YYYY-MM-DD HH:mm:ss")}
+              >
                 {dayjs(c.createdUtc).fromNow()}
                 {c.createdUtc !== c.updatedUtc && (
                   <> • edited {dayjs(c.updatedUtc).fromNow()}</>

@@ -52,7 +52,7 @@ export default function ModalContent({
     <div>
       <h1 className="text-2xl font-bold">{data.title}</h1>
       <p className="form-label mt-1">
-        r/{data.subreddit} • u/{data.author} • original post: {data.url}
+        r/{data.subreddit} • u/{data.author} • original post: <a href="{data.url}" target="_blank">{data.url} </a>
       </p>
 
       <div className="text-sm text-gray-600 dark:text-gray-400 mt-2">

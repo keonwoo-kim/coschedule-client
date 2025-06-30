@@ -54,7 +54,7 @@ export default function LoginPage() {
         <label className="block mb-1 font-medium">User ID</label>
         <input
           {...register("userId", { required: "User ID is required" })}
-          className="w-full border px-3 py-2 rounded"
+          className="form-input"
         />
       </div>
       <div>
@@ -62,7 +62,7 @@ export default function LoginPage() {
         <input
           type="password"
           {...register("password", { required: "Password is required" })}
-          className="w-full border px-3 py-2 rounded"
+          className="form-input"
         />
       </div>
       <button
