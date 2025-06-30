@@ -1,3 +1,8 @@
+export interface RedditPost {
+  kind: string;
+  data: PostData;
+}
+
 export interface Preview {
   images: PreviewImage[];
 }
@@ -38,9 +43,28 @@ export interface PostData {
   selftext: string;
   thumbnail: string;
   preview?: Preview;
+  gallery_data?: GalleryData;
+  media_metadata?: Record<string, MediaMetadata>;
 }
 
-export interface RedditPost {
-  kind: string;
-  data: PostData;
+export interface GalleryData {
+  items: GalleryItem[];
+}
+
+export interface GalleryItem {
+  media_id: string;
+  id: number;
+}
+
+export interface MediaMetadata {
+  status: string;
+  e: string;
+  m: string;
+  s: MediaSource;
+}
+
+export interface MediaSource {
+  u: string;
+  x: number;
+  y: number;
 }

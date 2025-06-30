@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "@/lib/api";
 import type { RedditPost } from "@/models/reddit";
 import Modal from "@/components/Modal";
-import Thumbnail from "@/components/Thumbnail";
-import ModalContent from "@/components/ModalContent";
+import Thumbnail from "@/app/search/components/Thumbnail";
+import ModalContent from "@/app/search/components/ModalContent";
 
 type SearchResultsProps = {
   results: RedditPost[];

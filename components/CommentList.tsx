@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import type { CommentDto } from "@/types/dtos";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { UserIcon } from "@heroicons/react/24/solid";
 dayjs.extend(relativeTime);
 
 export default function CommentList({
@@ -50,24 +51,35 @@ export default function CommentList({
     <>
       <ul className="space-y-3">
         {comments.map(c => (
-          <li key={c.id} className="border-b pb-2 flex justify-between items-start">
+          <li
+            key={c.id}
+            className="bg-zinc-800/50 p-4 rounded-lg shadow flex justify-between items-start"
+          >
             <div>
-              <strong>{c.userName}</strong>: {c.content}
-              <div className="text-xs text-gray-500 mt-1">
+              <div className="flex items-center gap-2 mb-1">
+                <UserIcon className="w-4 h-4 text-blue-400" />
+                <strong className="text-blue-400">{c.userName}</strong>
+              </div>
+              <p className="text-sm text-gray-200">{c.content}</p>
+              <div className="text-xs text-gray-400 italic mt-1"
+                  title={dayjs(c.createdUtc).format("YYYY-MM-DD HH:mm:ss")}>
                 {dayjs(c.createdUtc).fromNow()}
+                {c.createdUtc !== c.updatedUtc && (
+                  <> • edited {dayjs(c.updatedUtc).fromNow()}</>
+                )}
               </div>
             </div>
             {currentUserId == c.userId && (
-              <div className="space-x-2">
+              <div className="space-x-1">
                 <button
                   onClick={() => handleEditClick(c)}
-                  className="ml-2 text-sm text-blue-600 hover:underline"
+                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded-full"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(c.id)}
-                  className="ml-2 text-sm text-red-600 hover:underline"
+                  className="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded-full"
                 >
                   Delete
                 </button>
@@ -88,7 +100,9 @@ export default function CommentList({
               if (e.key === "Enter") handleSaveEdit();
               if (e.key === "Escape") setEditingComment(null);
             }}
-            className="border px-3 py-2 rounded w-full mb-4"
+            className="border px-3 py-2 rounded w-full mb-4
+              bg-white text-gray-900 placeholder-gray-400
+              dark:bg-gray-700 dark:text-white dark:placeholder-gray-500"
           />
           <div className="flex justify-end gap-2">
             <button

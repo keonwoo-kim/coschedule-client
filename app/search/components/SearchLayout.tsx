@@ -1,5 +1,7 @@
-import SearchForm from "@/components/SearchForm";
-import SearchResults from "@/components/SearchResults";
+'use client';
+
+import SearchForm from "@/app/search/components/SearchForm";
+import SearchResults from "@/app/search/components/SearchResults";
 import type { RedditPost } from "@/models/reddit";
 
 type SearchLayoutProps = {

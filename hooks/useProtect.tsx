@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation';
 import { useUserStore } from "@/store/useUserStore";
 
 export default function useProtect() {

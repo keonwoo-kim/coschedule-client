@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useUserStore } from '@/store/useUserStore';
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/useUserStore";
 
 export function useAuth() {
   const router = useRouter();
@@ -12,7 +14,7 @@ export function useAuth() {
 
   useEffect(() => {
     if (hydrated && !token) {
-      router.replace('/login');
+      router.replace("/login");
     }
   }, [hydrated, token, router]);
 

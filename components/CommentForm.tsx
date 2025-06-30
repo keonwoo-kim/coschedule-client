@@ -42,7 +42,7 @@ export default function CommentForm({
         }}
         maxLength={200}
         placeholder="Write a comment..."
-        className="flex-1 border px-3 py-2 rounded"
+        className="form-input"
       />
       <button
         type="submit"

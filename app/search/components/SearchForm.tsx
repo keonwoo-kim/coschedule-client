@@ -24,7 +24,7 @@ export default function SearchForm({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search Reddit posts..."
-        className="flex-grow px-4 py-2 border border-gray-300 rounded-md bg-background text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        className="form-input"
       />
       <button
         type="submit"

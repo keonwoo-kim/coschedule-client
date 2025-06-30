@@ -1,7 +1,10 @@
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+'use client';
+
 import axios from "@/lib/api";
+import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 import { useUserStore } from "@/store/useUserStore";
+import toast from 'react-hot-toast'
 import type { LoginResponseModel } from "@/types/dtos";
 
 type LoginRequest = {
@@ -24,11 +27,16 @@ export default function LoginPage() {
 
         const profile = res.data.userProfile;
         setUser(profile.id, profile.userId, profile.userName);
-
+        toast.success(
+          <div>
+            <div>Login Success!</div>
+            <div>Welcome, <b>{profile.userName}!</b></div>
+          </div>);
         router.push("/");
       } else {
-        alert(res.data.msg || "Login failed");
+        toast.error(res.data.msg || "Login failed");
       }
+    // eslint-disable-next-line
     } catch (err: any) {
       console.error("Login error", err);
       if (err.response?.status === 400) {

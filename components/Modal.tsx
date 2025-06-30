@@ -22,7 +22,7 @@ export default function Modal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white dark:bg-zinc-800 p-6 rounded max-w-lg w-full shadow-lg"
+        className="bg-white dark:bg-zinc-800 p-8 rounded-lg w-[90vw] max-w-5xl h-[95vh] overflow-y-auto shadow-xl"
       >
         {children}
       </div>

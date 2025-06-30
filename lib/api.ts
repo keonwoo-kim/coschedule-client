@@ -1,16 +1,21 @@
 import axios from "axios";
+import Router from "next/router";
 import { useUserStore } from "@/store/useUserStore";
 
-const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "",
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL
 });
 
-instance.interceptors.request.use((config) => {
-  const token = useUserStore.getState().token;
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+api.interceptors.response.use(
+  res => res,
+  err => {
+    if (err?.response?.status === 401) {
+      const userStore = useUserStore.getState();
+      userStore.setToken(null);
+      Router.replace("/login");
+    }
+    return Promise.reject(err);
   }
-  return config;
-});
+);
 
-export default instance;
+export default api;

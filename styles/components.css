@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app-header {
+    @apply fixed top-0 left-0 right-0 z-50 bg-indigo-600 text-white dark:bg-indigo-800;
+  }
+
+  .app-toolbar {
+    @apply flex items-center justify-between px-4 py-3;
+  }
+
+  .app-title {
+    @apply text-lg font-semibold;
+  }
+
+  .main-container {
+    @apply pt-16 px-4 lg:px-8 max-w-7xl mx-auto;
+  }
+
+  .drawer-overlay {
+    @apply fixed inset-0 bg-black/30;
+  }
+
+  .drawer-panel {
+    @apply relative w-64 bg-white dark:bg-gray-800 shadow-lg h-full z-50 transform transition-transform duration-300 ease-in-out translate-x-0;
+  }
+
+  .drawer-header {
+    @apply flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .drawer-title {
+    @apply text-lg font-bold text-gray-800 dark:text-white;
+  }
+
+  .drawer-close {
+    @apply text-gray-600 dark:text-gray-300 text-xl;
+  }
+
+  .nav-link {
+    @apply flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 cursor-pointer;
+  }
+
+   .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8;
+  }
+
+  .form-title {
+    @apply text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-0;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-2 border rounded-lg outline-none transition-all
+      appearance-none
+      bg-white text-gray-900 placeholder-gray-400
+      dark:bg-gray-700 dark:text-white dark:placeholder-gray-500
+      focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500;
+  }
+
+  .form-error {
+    @apply text-sm text-red-600 mt-1;
+  }
+
+  .form-checkbox {
+    @apply rounded border-gray-300 text-indigo-600 focus:ring-indigo-500;
+  }
+
+  .form-remember {
+    @apply ml-2 text-sm text-gray-600 dark:text-gray-400;
+  }
+
+  .form-link {
+    @apply text-sm text-indigo-600 hover:text-indigo-500;
+  }
+
+  .form-button {
+    @apply w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors;
+  }
+
+  .form-footer {
+    @apply mt-6 text-center text-sm text-gray-600 dark:text-gray-400;
+  }
+
+  .form-container {
+    @apply min-h-screen flex items-center justify-center p-4 bg-gray-100 dark:bg-gray-900;
+  }
+
+}
