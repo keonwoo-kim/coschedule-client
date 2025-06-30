@@ -13,7 +13,7 @@ export default function Header({ onMenu }: { onMenu: () => void }) {
         <button onClick={onMenu} className="text-xl">☰</button>
         <Link href="/" className="text-xl font-bold text-blue-600">CoSchedule OA</Link>
       </div>
-      
+
       {token && (
         <button
           onClick={() => setToken(null)}

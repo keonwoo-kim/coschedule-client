@@ -62,7 +62,7 @@ export default function CommentList({
               </div>
               <p className="text-sm text-gray-200">{c.content}</p>
               <div className="text-xs text-gray-400 italic mt-1"
-                  title={dayjs(c.createdUtc).format("YYYY-MM-DD HH:mm:ss")}>
+                title={dayjs(c.createdUtc).format("YYYY-MM-DD HH:mm:ss")}>
                 {dayjs(c.createdUtc).fromNow()}
                 {c.createdUtc !== c.updatedUtc && (
                   <> • edited {dayjs(c.updatedUtc).fromNow()}</>

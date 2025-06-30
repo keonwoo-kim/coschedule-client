@@ -13,11 +13,11 @@ type RegisterForm = {
 };
 
 export default function RegisterPage() {
-  const { 
-    register, 
-    handleSubmit, 
+  const {
+    register,
+    handleSubmit,
     watch,
-    formState: { errors } 
+    formState: { errors }
   } = useForm<RegisterForm>();
 
   const router = useRouter();
@@ -35,6 +35,7 @@ export default function RegisterPage() {
         confirmPassword: data.confirmPassword
       });
       router.push("/login");
+      // eslint-disable-next-line
     } catch (err: any) {
       console.error(err);
       alert(err?.response?.data?.message || "Failed to create an account.");
@@ -93,9 +94,8 @@ export default function RegisterPage() {
       <button
         type="submit"
         disabled={loading}
-        className={`w-full py-2 rounded text-white font-medium transition ${
-          loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-        }`}
+        className={`w-full py-2 rounded text-white font-medium transition ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+          }`}
       >
         {loading ? "Registering..." : "Register"}
       </button>

@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import axios from "@/lib/api";
-import { useRouter } from 'next/navigation';
-import { useUserStore } from "@/store/useUserStore";
 import CommentList from "@/components/CommentList";
 import CommentForm from "@/components/CommentForm";
 import RatingForm from "@/components/RatingForm";
@@ -19,7 +17,7 @@ export default function ModalContent({
   redditPost: RedditPost;
 }) {
   const { data } = redditPost;
-  const router = useRouter();
+
   const [comments, setComments] = useState<CommentDto[]>([]);
   const [ratings, setRatings] = useState<RatingDto[]>([]);
 
@@ -35,45 +33,28 @@ export default function ModalContent({
   const hasGallery = images.length > 0;
   const hasPreview = Boolean(previewUrl);
 
-  const handleAuthError = (err: any) => {
-    if (err?.response?.status === 401) {
-      const userStore = useUserStore.getState();
-      userStore.setToken(null);
-      router.replace("/login");
-    } else {
-      console.error(err);
-    }
-  };
-
-  const loadComments = useCallback(async () => {
+  const loadData = useCallback(async () => {
     try {
-      const res = await axios.get<CommentDto[]>(`/comments/getAll?itemId=${itemId}`);
-      setComments(res.data);
-    } catch (err: any) {
-      handleAuthError(err);
+      const commentRes = await axios.get<CommentDto[]>(`/comments/getAll?itemId=${itemId}`);
+      setComments(commentRes.data);
+      const ratingRes = await axios.get<RatingDto[]>(`/ratings/getAll?itemId=${itemId}`);
+      setRatings(ratingRes.data);
+    } catch (err) {
+      console.error("Failed to load comments or ratings", err);
     }
-  }, [itemId, router]);
-
-  const loadRatings = useCallback(async () => {
-    try {
-      const res = await axios.get<RatingDto[]>(`/ratings/getAll?itemId=${itemId}`);
-      setRatings(res.data);
-    } catch (err: any) {
-      handleAuthError(err);
-    }
-  }, [itemId, router]);
+  }, [itemId]);
 
   useEffect(() => {
-    loadComments();
-    loadRatings();
-  }, [loadComments, loadRatings]);
+    loadData();
+  }, [loadData]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold">{data.title}</h1>
-      <li className="form-label mt-1">
-        r/{data.subreddit} • u/{data.author} • original post: {data.url} 
-      </li>
+      <p className="form-label mt-1">
+        r/{data.subreddit} • u/{data.author} • original post: {data.url}
+      </p>
+
       <div className="text-sm text-gray-600 dark:text-gray-400 mt-2">
         average user rating: {ratings.length > 0 
           ? (ratings.reduce((acc, r) => acc + r.value, 0) / ratings.length).toFixed(2)
@@ -88,7 +69,7 @@ export default function ModalContent({
             src={images[current]!}
             alt={`Image ${current + 1}`}
             fill
-            className="object-contain rounded border"
+            className="w-full h-full object-contain rounded border"
           />
           {images.length > 1 && (
             <div className="flex justify-between mt-2">
@@ -127,9 +108,9 @@ export default function ModalContent({
 
       {/* Rating + Comments */}
       <div className="border-t mt-6">
-        <RatingForm itemId={itemId} onReload={loadRatings} />
-        <CommentList comments={comments} onReload={loadComments} />
-        <CommentForm itemId={itemId} onReload={loadComments} />
+        <RatingForm itemId={itemId} onReload={loadData} />
+        <CommentList comments={comments} onReload={loadData} />
+        <CommentForm itemId={itemId} onReload={loadData} />
       </div>
     </div>
   );

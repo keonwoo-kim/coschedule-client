@@ -28,7 +28,7 @@ export default function RatingForm({
 
   const handleClick = async (value: number) => {
     const prev = rating;
-    setRating(prev => prev ? { ...prev, value } : { id: 0, value });  // 임시 id=0
+    setRating(prev => prev ? { ...prev, value } : { id: 0, value });
 
     try {
       if (!prev) {

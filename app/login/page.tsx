@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useUserStore } from "@/store/useUserStore";
 import toast from 'react-hot-toast'
 import type { LoginResponseModel } from "@/types/dtos";
+import Link from "next/link";
 
 type LoginRequest = {
   userId: string;
@@ -36,7 +37,7 @@ export default function LoginPage() {
       } else {
         toast.error(res.data.msg || "Login failed");
       }
-    // eslint-disable-next-line
+      // eslint-disable-next-line
     } catch (err: any) {
       console.error("Login error", err);
       if (err.response?.status === 400) {
@@ -70,6 +71,13 @@ export default function LoginPage() {
       >
         Login
       </button>
+      <div className="form-footer">
+        Don’t have an account?{' '}
+        <Link href="/register" className="form-link font-medium">
+          Sign up
+        </Link>
+      </div>
     </form>
   );
 }
+  
